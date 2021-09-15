@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Vue</title>
+    <script src="https://unpkg.com/vue/dist/vue.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+    <div id="app">
+        <div class="container">
+            <div class="title-wrap">
+                <h2>體重及錢包的「守護者」</h2>
+                <h4>本人很喜歡吃摩斯漢堡，買的時候加購點心都會很想要加爆，為了<span style="color: red;font-weight:600;">制止自己</span>而製作
+                </h4>
+                <p style="color: black;">(使用vue.js開發)</p>
+            </div>
+
+            <div class="item_header" style="
+            background-color: #d12027;">
+                <div class="item_detail" style="color: white;">商品</div>
+                <div class="price" style="color: white;">單價</div>
+                <div class="kcal" style="color: white;">熱量</div>
+                <div class="count" style="color: white;">數量</div>
+                <div class="amount" style="color: white;">總計/總熱量</div>
+                <div class="operate" style="color: white;">操作</div>
+            </div>
+            <div class="item_container" v-for="(item, index) in itemList" :key="item.id">
+                <div class="item_header item_body">
+                    <div class="item_detail">
+                        <img v-bind:src="item.imgUrl" alt="">
+                        <div class="name">{{item.itemName}}</div>
+                    </div>
+
+                    <div class="price"><span>$</span>{{item.price}}</div>
+                    <div class="kcal">{{item.kcal}} <span>kcal</span></div>
+                    <div class="count">
+                        <button @click="handleSub(item)">-</button>
+                        {{item.count}}
+                        <button @click="handlePlus(item)">+</button>
+                    </div>
+                    <div class="amount">{{item.price * item.count}} <span>/</span> {{item.kcal*item.count}}</div>
+                    <div class="operate">
+                        <button @click="handledelete(index)">刪除</button>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</body>
+<script src="main.js"></script>
+
+</html>
